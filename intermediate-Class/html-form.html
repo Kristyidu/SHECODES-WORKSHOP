@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Forms</title>
+    <style>
+      form {
+        border: 1px solid gray;
+        border-radius: 4px;
+        padding: 10px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        text-align: center;
+      }
+      label {
+        display: block;
+      }
+      input {
+        line-height: 2;
+        width: 50%;
+        margin: 10px 0;
+        font-size: 16px;
+      }
+      .your-input {
+        font-size: 20px;
+      }
+      .submit-btn {
+        width: 30%;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="#">
+      <h1>Welcome back! Please fill the form below</h1>
+      <div class="your-input">
+        <label for="my-email">Enter your email address</label>
+        <input
+          type="email"
+          id="my-email"
+          placeholder="e.g chris@gmail.com"
+          required
+          autofocus
+        />
+      </div>
+      <div class="your-input">
+        <label for="passwd">Enter your password</label>
+        <input
+          type="password"
+          id="passwd"
+          placeholder="min 5 characters"
+          required
+        />
+      </div>
+      <div class="your-input">
+        <input type="submit" class="submit-btn" value="Login" />
+      </div>
+    </form>
+  </body>
+</html>

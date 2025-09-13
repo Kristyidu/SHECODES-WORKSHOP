@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project</title>
+  </head>
+  <style>
+    body {
+      background: #ad9df3;
+    }
+    h1 {
+      margin: 0 auto;
+      text-align: center;
+      margin-bottom: 10px;
+      color: plum;
+    }
+
+    h2 {
+      margin: 0 auto;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #c3195d;
+      cursor: pointer;
+    }
+    .mainContainer {
+      border-radius: 10px;
+      background: radial-gradient(
+        circle at 10% 20%,
+        rgb(253, 239, 132) 0%,
+        rgb(247, 198, 169) 54.2%,
+        rgb(21, 186, 196) 100.3%
+      );
+      margin: 10px auto;
+      padding: 20px;
+      max-width: 600px;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    .myDarkBtn {
+      padding: 15px;
+      margin: 10px auto;
+      display: block;
+      border: 1px solid gray;
+      font-size: 14px;
+      border-radius: 10px;
+      background: rgb(230, 227, 227);
+      color: black;
+    }
+    .myDarkBtn:hover {
+      background: black;
+      color: white;
+      transition: all 300ms ease-in;
+      cursor: pointer;
+    }
+    .learnBtn {
+      padding: 20px;
+      margin: 10px auto;
+      display: block;
+      border: 1px solid gray;
+      font-size: 14px;
+      border-radius: 10px;
+      background: rgb(230, 227, 227);
+      cursor: pointer;
+    }
+    .learnBtn a {
+      text-decoration: none;
+      color: black;
+    }
+    .learnBtn:hover {
+      background: skyblue;
+      transition: all 300ms ease-in-out;
+    }
+    .main-image {
+      transition: all 500ms ease-in-out;
+      object-fit: cover;
+      align-items: center;
+      margin: 0 auto;
+    }
+    .main-image:hover {
+      filter: contrast(70%);
+      transform: scale(1.1);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin: 20px 0;
+      object-fit: cover;
+    }
+    .grid img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      transition: all 300ms ease;
+      cursor: pointer;
+    }
+    .grid img:hover {
+      transform: scale(1.5);
+      opacity: 0.7;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.5;
+      text-align: justify;
+    }
+    .aLink {
+      color: #f80768;
+      font-size: 17px;
+      text-decoration: none;
+    }
+    .darkBackground {
+      background: #444746;
+    }
+    .darkBackground .mainContainer {
+      background: #fff;
+    }
+    .darkBackground footer .footlink {
+      color: #fff;
+    }
+    .darkBackground a {
+      color: #f80768;
+    }
+    footer {
+      font-size: 18px;
+      text-align: center;
+      color: #0e0f01;
+      margin-top: 10px;
+    }
+    .footlink {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+  </style>
+  <body>
+    <button class="myDarkBtn">Dark Theme</button>
+    <div class="mainContainer">
+      <h1>Baking Snacks</h1>
+      <h2>My Favorite Hobby</h2>
+      <a
+        href="https://ajojesnacks.com/blog/delicious-taste-of-nigerian-snacks/"
+      >
+        <img
+          src="https://images.surferseo.art/9e34f204-2a4f-4315-ad60-a3e0c2a4bd11.jpeg"
+          class="main-image"
+        />
+      </a>
+      <div class="grid">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBMw68ql98qxb5Y_Ypyh0_3VauuSK4wbKQirPZWkxxreHwyoHGHLrh03w&s"
+        />
+
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRewXXlHSijRpP-Du1s7_B56sgWUaeoYFktSA&s"
+        />
+
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvOu5ruRfdMIVwZ5e5zvWYdnIiEguRfsnSywJqWqN8E2Lr8YO5vtKYaCI&s"
+        />
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu9I5QH_-yNox9Df1mHoK81Z1UPOXwI15LtIXBpiVmySRCq2KCp0W7WeA&s"
+        />
+      </div>
+
+      <p>
+        Learning to bake is more than just following a recipe — it’s a hands-on
+        adventure filled with creativity, discovery, and of course, delicious
+        rewards. From the simple joy of kneading dough to watching a cake rise
+        in the oven, every step offers a sense of accomplishment. One of the fun
+        aspects of baking is experimenting with different flavors and
+        ingredients. You can start with basic bread or cookies and gradually try
+        more complex treats like layered cakes or pastries. Baking also brings
+        out creativity: decorating cupcakes or designing your own bread shapes
+        lets you express yourself while making something tasty. Beyond the
+        kitchen, baking has a social side. Sharing your fresh bakes with friends
+        or family, or even joining a baking class, can create lasting memories.
+        Plus, there is a calming, almost therapeutic rhythm to measuring,
+        mixing, and waiting for things to bake — a small break from busy
+        everyday life. In the end, learning to bake is a fun, rewarding hobby
+        that combines skill, creativity, and a touch of sweetness.
+      </p>
+      <a
+        href="https://www.thespruceeats.com/baking-ingredient-science-481226"
+        class="aLink"
+        >Click for more baking contents</a
+      >
+    </div>
+    <button class="learnBtn">
+      <a href="https://www.thespruceeats.com/baking-ingredient-science-481226"
+        >Learn More</a
+      >
+    </button>
+    <footer>
+      <div class="footlink">
+        Coded by: Itodo Christiana, 2025<a href="https://x.com/Kristyidu"
+          >follow @𝕏
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      function changeBackground() {
+        let body = document.querySelector('body');
+        if (body.classList.contains('darkBackground')) {
+          // body.classList.toggle("darkBackground")
+          body.classList.remove('darkBackground');
+        } else {
+          body.classList.add('darkBackground');
+        }
+      }
+
+      let myDarkBtn = document.querySelector('.myDarkBtn');
+      myDarkBtn.addEventListener('click', changeBackground);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basics Final Project</title>
+    <style>
+      .container {
+        background: radial-gradient(
+          circle at 10% 20%,
+          rgb(255, 246, 236) 39.5%,
+          rgba(100, 46, 122, 0.23) 100.2%
+        );
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border-radius: 10px;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 40px;
+        border: 1px solid #dbd8e3;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 8px;
+        color: #352f44;
+        font-weight: bold;
+      }
+      h2 {
+        text-align: center;
+        font-size: 30px;
+        color: #5c5470;
+        font-weight: bold;
+      }
+      hr {
+        height: 1px;
+        background-color: #dbd8e3;
+        border: none;
+        margin: 20px;
+      }
+      img {
+        display: block;
+        margin: 20px auto;
+        max-width: 100%;
+        border-radius: 10px;
+      }
+      p {
+        line-height: 1.5;
+        font-size: 22px;
+        text-align: justify;
+        color: #352f44;
+        margin: 20px;
+      }
+      a {
+        color: #5f233f;
+        text-decoration: none;
+        font-size: 18px;
+        margin: 20px;
+      }
+      a:hover {
+        color: #ab3124;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      button {
+        display: block;
+        margin: 30px auto;
+        padding: 20px;
+        font-size: 20px;
+        background-color: #5c5470;
+        color: white;
+        border-radius: 10px;
+        transition: all 250ms ease-in-out;
+        cursor: pointer;
+        box-shadow: #757575 2px 6px 6px 0;
+        border: none;
+      }
+      button:hover {
+        background-color: #4f1567;
+        color: gainsboro;
+      }
+      span {
+        display: block;
+        text-align: center;
+        font-size: 20px;
+        margin: 10px;
+        color: #ab3124;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>I Love Beautiful Dresses</h1>
+      <h2>Especially Traditional Bridal Dresses</h2>
+      <hr />
+      <img
+        src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/171/253/original/Nigerian_Lace_Dress.jpeg?1753663543"
+        alt="purple-dress"
+      />
+      <hr />
+
+      <p>
+        African bridal dresses are a vibrant celebration of culture, tradition,
+        and individual style, often featuring rich colors, luxurious fabrics,
+        and intricate embellishments.
+        <strong
+          ><em
+            >Yoruba brides traditionally wear Aso Oke, Igbo brides favor George
+            fabric and beaded crowns, while Hausa brides often choose lace or
+            silk with intricate henna and veils.
+          </em></strong
+        >
+        <br />Modern Nigerian bridal fashion also embraces a mix of traditional
+        elements with contemporary designs, including white gowns with unique
+        details and colorful gowns for the traditional engagement.
+      </p>
+
+      <a
+        href="https://www.pinterest.com/vivacious3377/nigerian-wedding-dresses-traditional/"
+        target="_blank"
+        >Check out more latest designs</a
+      >
+      <button>Try our designs</button>
+    </div>
+    <footer>
+      <span>Coded by Christiana Idu, &copy;2025</span>
+    </footer>
+    <script>
+      function myDesign() {
+        let name = prompt('Please Enter Your Name');
+        if (name.length) {
+          alert(
+            `Thanks ${name}, for contacting us. We will send our latest catalogue to you soon!`
+          );
+        } else {
+          alert('Please input your name and try again!');
+        }
+      }
+      let myButton = document.querySelector('button');
+      myButton.addEventListener('click', myDesign);
+    </script>
+  </body>
+</html>

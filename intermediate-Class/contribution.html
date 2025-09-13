@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contribution Tracker</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f7fa;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 20px 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+      }
+
+      .app-description {
+        font-style: italic;
+        opacity: 0.9;
+      }
+
+      .main-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        background: white;
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+      }
+
+      .card h2 {
+        color: #667eea;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #f0f0f0;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: #555;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: border 0.3s ease;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+      }
+
+      button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: inline-block;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      .btn-full {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .summary-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .summary-stats {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .stat-card {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-card h3 {
+        color: #667eea;
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+      }
+      #total-expenses {
+        color: red;
+      }
+      .stat-card p {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #2c3e50;
+      }
+
+      .transactions-list {
+        max-height: 400px;
+        overflow-y: auto;
+      }
+
+      .transaction-item {
+        padding: 12px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .transaction-item:last-child {
+        border-bottom: none;
+      }
+
+      .transaction-info {
+        flex-grow: 1;
+      }
+
+      .transaction-name {
+        font-weight: 600;
+        color: #2c3e50;
+      }
+
+      .transaction-desc {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 3px;
+      }
+
+      .transaction-date {
+        font-size: 0.8rem;
+        color: #999;
+        margin-left: 10px;
+      }
+
+      .transaction-amount {
+        font-weight: 700;
+        min-width: 80px;
+        text-align: right;
+      }
+
+      .positive {
+        color: #27ae60;
+      }
+
+      .negative {
+        color: #e74c3c;
+      }
+
+      .members-list {
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .member-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .member-item:last-child {
+        border-bottom: none;
+      }
+
+      .member-name {
+        font-weight: 600;
+      }
+
+      .member-amount {
+        font-weight: 700;
+      }
+
+      .tabs {
+        display: flex;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        background: #f0f0f0;
+        border-radius: 5px 5px 0 0;
+        margin-right: 5px;
+      }
+
+      .tab.active {
+        background: white;
+        border-bottom: 2px solid #667eea;
+        font-weight: 600;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .btn-secondary {
+        background: #95a5a6;
+      }
+
+      .btn-secondary:hover {
+        box-shadow: 0 5px 15px rgba(149, 165, 166, 0.4);
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 30px;
+        color: #777;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Contribution Tracker</h1>
+        <p class="app-description">
+          Track payments, expenses, and view detailed summaries
+        </p>
+      </header>
+
+      <div class="main-content">
+        <div class="card">
+          <h2>Record Transaction</h2>
+          <div class="tabs">
+            <div class="tab active" data-tab="payment">Record Payment</div>
+            <div class="tab" data-tab="expense">Record Expense</div>
+          </div>
+
+          <div id="payment-tab" class="tab-content active">
+            <form id="payment-form">
+              <div class="form-group">
+                <label for="payer-name">Member Name</label>
+                <input
+                  type="text"
+                  id="payer-name"
+                  placeholder="Enter member's name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="payment-amount">Amount (₦)</label>
+                <input
+                  type="number"
+                  id="payment-amount"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="0.00"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="payment-desc">Description</label>
+                <input
+                  type="text"
+                  id="payment-desc"
+                  placeholder="Contribution for..."
+                />
+              </div>
+              <button type="submit" class="btn-full">Record Payment</button>
+            </form>
+          </div>
+
+          <div id="expense-tab" class="tab-content">
+            <form id="expense-form">
+              <div class="form-group">
+                <label for="expense-amount">Expense Amount (₦)</label>
+                <input
+                  type="number"
+                  id="expense-amount"
+                  min="0.01"
+                  step="0.01"
+                  placeholder="0.00"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="expense-payer">Paid By</label>
+                <select id="expense-payer">
+                  <option value="Fund">Class Fund</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="expense-desc">Description</label>
+                <input
+                  type="text"
+                  id="expense-desc"
+                  placeholder="Expense for..."
+                  required
+                />
+              </div>
+              <button type="submit" class="btn-full">Record Expense</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Summary</h2>
+          <div class="summary-stats">
+            <div class="stat-card">
+              <h3>Total Contributions</h3>
+              <p id="total-contributions">₦0.00</p>
+            </div>
+            <div class="stat-card">
+              <h3>Total Expenses</h3>
+              <p id="total-expenses">₦0.00</p>
+            </div>
+            <div class="stat-card">
+              <h3>Available Balance</h3>
+              <p id="available-balance">₦0.00</p>
+            </div>
+            <div class="stat-card">
+              <h3>Net Total</h3>
+              <p id="net-total">₦0.00</p>
+            </div>
+          </div>
+
+          <h3>Top Contributors</h3>
+          <div id="members-list" class="members-list">
+            <p>No contributions yet.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Transaction History</h2>
+        <div class="actions">
+          <button id="clear-all-btn">Clear All Data</button>
+          <button id="export-btn">Export Data</button>
+        </div>
+        <div id="transactions-list" class="transactions-list">
+          <p>No transactions yet.</p>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          &copy; <span id="current-year"></span> Contribution Tracker App by
+          Christy. All rights reserved.
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      // Initialize app
+      document.getElementById('current-year').textContent =
+        new Date().getFullYear();
+
+      // Data structure
+      let appData = {
+        members: {},
+        transactions: [],
+      };
+
+      // Load data from localStorage
+      function loadData() {
+        const savedData = localStorage.getItem('contributionAppData');
+        if (savedData) {
+          appData = JSON.parse(savedData);
+          updateMembersDropdown();
+        }
+        renderAll();
+      }
+
+      // Save data to localStorage
+      function saveData() {
+        localStorage.setItem('contributionAppData', JSON.stringify(appData));
+      }
+
+      // Tab functionality
+      document.querySelectorAll('.tab').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          // Remove active class from all tabs and content
+          document
+            .querySelectorAll('.tab')
+            .forEach((t) => t.classList.remove('active'));
+          document
+            .querySelectorAll('.tab-content')
+            .forEach((c) => c.classList.remove('active'));
+
+          // Add active class to clicked tab and corresponding content
+          tab.classList.add('active');
+          const tabId = tab.getAttribute('data-tab') + '-tab';
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
+
+      // Form submission for payment
+      document
+        .getElementById('payment-form')
+        .addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById('payer-name').value.trim();
+          const amount = parseFloat(
+            document.getElementById('payment-amount').value
+          );
+          const description =
+            document.getElementById('payment-desc').value.trim() ||
+            'Contribution';
+
+          if (amount <= 0) {
+            alert('Amount must be greater than zero');
+            return;
+          }
+
+          // Add transaction
+          const transaction = {
+            id: Date.now(),
+            type: 'payment',
+            name: name,
+            amount: amount,
+            description: description,
+            timestamp: new Date().toISOString(),
+          };
+
+          appData.transactions.push(transaction);
+
+          // Update member balance
+          if (!appData.members[name]) {
+            appData.members[name] = 0;
+          }
+          appData.members[name] += amount;
+
+          // Update UI
+          saveData();
+          renderAll();
+
+          // Reset form
+          this.reset();
+
+          alert(
+            `Payment of ₦${amount.toFixed(
+              2
+            )} from ${name} recorded successfully!`
+          );
+        });
+
+      // Form submission for expense
+      document
+        .getElementById('expense-form')
+        .addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          const amount = parseFloat(
+            document.getElementById('expense-amount').value
+          );
+          const payer = document.getElementById('expense-payer').value;
+          const description =
+            document.getElementById('expense-desc').value.trim() || 'Expense';
+
+          if (amount <= 0) {
+            alert('Amount must be greater than zero');
+            return;
+          }
+
+          // Check if there are sufficient funds
+          const totalFunds = Object.values(appData.members).reduce(
+            (sum, val) => sum + val,
+            0
+          );
+          if (amount > totalFunds) {
+            alert(
+              `Insufficient funds! Total available: ₦${totalFunds.toFixed(
+                2
+              )}, Requested: ₦${amount.toFixed(2)}`
+            );
+            return;
+          }
+
+          // Add transaction
+          const transaction = {
+            id: Date.now(),
+            type: 'expense',
+            payer: payer,
+            amount: amount,
+            description: description,
+            timestamp: new Date().toISOString(),
+          };
+
+          appData.transactions.push(transaction);
+
+          // Update UI
+          saveData();
+          renderAll();
+
+          // Reset form
+          this.reset();
+
+          alert(`Expense of ₦${amount.toFixed(2)} recorded successfully!`);
+        });
+
+      // Clear all data
+      document
+        .getElementById('clear-all-btn')
+        .addEventListener('click', function () {
+          if (
+            confirm(
+              'Are you sure you want to clear all data? This cannot be undone!'
+            )
+          ) {
+            appData = {
+              members: {},
+              transactions: [],
+            };
+            saveData();
+            renderAll();
+            alert('All data has been cleared!');
+          }
+        });
+
+      // Export data
+      document
+        .getElementById('export-btn')
+        .addEventListener('click', function () {
+          const dataStr =
+            'data:text/json;charset=utf-8,' +
+            encodeURIComponent(JSON.stringify(appData, null, 2));
+          const downloadAnchorNode = document.createElement('a');
+          downloadAnchorNode.setAttribute('href', dataStr);
+          downloadAnchorNode.setAttribute('download', 'contribution_data.json');
+          document.body.appendChild(downloadAnchorNode);
+          downloadAnchorNode.click();
+          downloadAnchorNode.remove();
+        });
+
+      // Update members dropdown with current members
+      function updateMembersDropdown() {
+        const dropdown = document.getElementById('expense-payer');
+        // Keep the first option (Fund)
+        dropdown.innerHTML = '<option value="Fund">Class Fund</option>';
+
+        // Add members
+        Object.keys(appData.members)
+          .sort()
+          .forEach((name) => {
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            dropdown.appendChild(option);
+          });
+      }
+
+      // Render all UI components
+      function renderAll() {
+        renderSummary();
+        renderMembersList();
+        renderTransactionsList();
+        updateMembersDropdown();
+      }
+
+      // Render summary stats
+      function renderSummary() {
+        const totalContributions = appData.transactions
+          .filter((t) => t.type === 'payment')
+          .reduce((sum, t) => sum + t.amount, 0);
+
+        const totalExpenses = appData.transactions
+          .filter((t) => t.type === 'expense')
+          .reduce((sum, t) => sum + t.amount, 0);
+
+        const availableBalance = totalContributions - totalExpenses;
+        const netTotal = availableBalance; // This is the final balance after expenses
+
+        document.getElementById('total-contributions').textContent =
+          '₦' + totalContributions.toFixed(2);
+        document.getElementById('total-expenses').textContent =
+          '₦' + totalExpenses.toFixed(2);
+        document.getElementById('available-balance').textContent =
+          '₦' + availableBalance.toFixed(2);
+        document.getElementById('net-total').textContent =
+          '₦' + netTotal.toFixed(2);
+      }
+
+      // Render members list
+      function renderMembersList() {
+        const membersList = document.getElementById('members-list');
+
+        if (Object.keys(appData.members).length === 0) {
+          membersList.innerHTML = '<p>No contributions yet.</p>';
+          return;
+        }
+
+        // Sort members by contribution amount (descending)
+        const sortedMembers = Object.entries(appData.members).sort(
+          (a, b) => b[1] - a[1]
+        );
+
+        membersList.innerHTML = '';
+        sortedMembers.forEach(([name, amount]) => {
+          const memberItem = document.createElement('div');
+          memberItem.className = 'member-item';
+          memberItem.innerHTML = `
+                    <div class="member-name">${name}</div>
+                    <div class="member-amount">₦${amount.toFixed(2)}</div>
+                `;
+          membersList.appendChild(memberItem);
+        });
+      }
+
+      // Render transactions list
+      function renderTransactionsList() {
+        const transactionsList = document.getElementById('transactions-list');
+
+        if (appData.transactions.length === 0) {
+          transactionsList.innerHTML = '<p>No transactions yet.</p>';
+          return;
+        }
+
+        // Sort transactions by date (newest first)
+        const sortedTransactions = [...appData.transactions].sort(
+          (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+        );
+
+        transactionsList.innerHTML = '';
+        sortedTransactions.forEach((transaction) => {
+          const transactionItem = document.createElement('div');
+          transactionItem.className = 'transaction-item';
+
+          const date = new Date(transaction.timestamp);
+          const formattedDate =
+            date.toLocaleDateString() +
+            ' ' +
+            date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+          let nameDisplay = '';
+          let amountClass = '';
+          let amountDisplay = '';
+
+          if (transaction.type === 'payment') {
+            nameDisplay = transaction.name;
+            amountClass = 'positive';
+            amountDisplay = '+' + transaction.amount.toFixed(2);
+          } else {
+            nameDisplay = transaction.payer;
+            amountClass = 'negative';
+            amountDisplay = '-' + transaction.amount.toFixed(2);
+          }
+
+          transactionItem.innerHTML = `
+                    <div class="transaction-info">
+                        <div class="transaction-name">${nameDisplay}</div>
+                        <div class="transaction-desc">${transaction.description}</div>
+                    </div>
+                    <div class="transaction-date">${formattedDate}</div>
+                    <div class="transaction-amount ${amountClass}">₦${amountDisplay}</div>
+                `;
+
+          transactionsList.appendChild(transactionItem);
+        });
+      }
+
+      // Initialize the app
+      loadData();
+    </script>
+  </body>
+</html>
